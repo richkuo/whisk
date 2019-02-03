@@ -5,9 +5,9 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  email: 'user_one'
-  encrypted_password: 'user_one'
+  email: 'admin_one'
+  encrypted_password: 'admin_one'
 
 two:
-  email: 'user_two'
-  encrypted_password: 'user_two'
+  email: 'admin_two'
+  encrypted_password: 'admin_two'

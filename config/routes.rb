@@ -1,15 +1,26 @@
 Rails.application.routes.draw do
+  devise_for :admins, path: 'admin'
   devise_for :users
-  # resources :users
 
   devise_scope :user do
     authenticated :user do
-      root 'users#index', as: :authenticated_root
+      root 'users#index'
       resources :users
     end
 
     unauthenticated do
-      root 'devise/registrations#new', as: :unauthenticated_root
+      root 'devise/registrations#new'
+    end
+  end
+
+  devise_scope :admin do
+    authenticated :admin do
+      root 'admins#index'
+      resources :admins
+    end
+
+    unauthenticated do
+      root 'devise/registrations#new'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
