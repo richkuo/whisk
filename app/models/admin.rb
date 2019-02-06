@@ -4,4 +4,7 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable, :confirmable,
          :lockable
+
+  has_many :company_ownerships
+  has_many :companies, through: :company_ownerships
 end

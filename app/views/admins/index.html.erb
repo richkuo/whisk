@@ -10,12 +10,12 @@
   </thead>
 
   <tbody>
-    <% @admins.each do |admin| %>
+    <% @companies.each do |company| %>
       <tr>
-        <td><%= admin.inspect %></td>
-        <td><%= link_to 'Show', admin %></td>
-        <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
-        <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= company.inspect %></td>
+        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Admin', new_admin_path %>
+<%= link_to 'Add Company', new_company_path %>

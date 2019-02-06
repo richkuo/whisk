@@ -1,10 +1,10 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update, :destroy]
+  # before_action :set_admin, only: [:show, :edit, :update, :destroy]
 
   # GET /admins
   # GET /admins.json
   def index
-    @admins = Admin.all
+    @companies = current_admin.companies
   end
 
   # GET /admins/1
@@ -69,6 +69,6 @@ class AdminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.fetch(:admin, {})
+      params.require(:admin).permit(:company_id)
     end
 end
