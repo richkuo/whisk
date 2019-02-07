@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       root 'admins#index'
       resources :admins
       resources :companies
+      resources :users
     end
 
     unauthenticated do
