@@ -1,10 +1,13 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  # before_action :admin_signed_in?
+  before_action :check_access, only: [:show, :edit, :update]
 
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    # @companies = Company.all
+    @companies = current_admin.companies
   end
 
   # GET /companies/1
@@ -65,6 +68,15 @@ class CompaniesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_company
       @company = Company.find(params[:id])
+    end
+
+    def check_access
+      if @company.admins.include?(current_admin)
+        return true
+      else
+        flash.notice = "You do not have access"
+        redirect_to :root
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
