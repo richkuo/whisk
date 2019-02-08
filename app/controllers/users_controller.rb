@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_access, only: [:show, :edit, :update]
 
   # GET /users
   # GET /users.json
@@ -25,11 +26,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @company_id = user_params[:company_id]
+    @user = User.new(user_params.except(:company_id))
 
     respond_to do |format|
-      byebug
-      if @user.save
+      if @user.save(validate: false)
+        @company = current_admin.companies.find(@company_id)
+        @company.users << @user
+
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -69,8 +73,18 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def check_access
+      if current_admin.users.include?(@user)
+        return true
+      else
+        flash.notice = "You do not have access"
+        redirect_back(fallback_location: root_path)
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email,
+        :password, :password_confirmation, :company_id)
     end
 end

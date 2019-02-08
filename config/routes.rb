@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins, path: 'admin'
-  devise_for :users
+  devise_for :users, path: 'auth'
 
   devise_scope :user do
     authenticated :user do

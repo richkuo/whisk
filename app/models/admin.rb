@@ -7,4 +7,5 @@ class Admin < ApplicationRecord
 
   has_many :company_ownerships
   has_many :companies, through: :company_ownerships
+  has_many :users, through: :companies
 end
