@@ -1,4 +1,7 @@
 class Admin < ApplicationRecord
+  # has_many :accounts, as: :accountable
+  include Accountable
+
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :trackable,

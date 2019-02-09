@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root 'users#index'
-      resources :users
+
+      resources :users do
+        resources :accounts
+      end
     end
 
     unauthenticated do
@@ -16,9 +19,18 @@ Rails.application.routes.draw do
   devise_scope :admin do
     authenticated :admin do
       root 'admins#index'
-      resources :admins
-      resources :companies
-      resources :users
+
+      resources :admins do
+        resources :accounts
+      end
+
+      # TODO: move companies under admins
+      resources :companies do
+      end
+
+      resources :users do
+        resources :accounts
+      end
     end
 
     unauthenticated do

@@ -4,4 +4,5 @@ class Company < ApplicationRecord
 
   has_many :employments
   has_many :users, through: :employments
+  # TODO change has_many users to has_many :employees, through: :employments, source: :user
 end
