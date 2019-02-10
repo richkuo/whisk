@@ -21,11 +21,11 @@ Rails.application.routes.draw do
       root 'admins#index'
 
       resources :admins do
-        resources :accounts
       end
 
       # TODO: move companies under admins
       resources :companies do
+        resources :accounts
       end
 
       resources :users do

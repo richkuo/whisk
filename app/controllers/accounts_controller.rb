@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /accounts
   # GET /accounts.json
@@ -17,7 +18,8 @@ class AccountsController < ApplicationController
     if current_user
       @account = current_user.accounts.new
     elsif current_admin
-      @account = current_admin.accounts.new
+      @account = @company.accounts.new
+      # @account = current_admin.accounts.new
     end
   end
 
@@ -31,7 +33,8 @@ class AccountsController < ApplicationController
     if current_user
       @account = current_user.accounts.new(account_params)
     elsif current_admin
-      @account = current_admin.accounts.new(account_params)
+      @account = @company.accounts.new(account_params)
+      # @account = current_admin.accounts.new(account_params)
     end
     # @account = Account.new(account_params)
 
@@ -76,8 +79,14 @@ class AccountsController < ApplicationController
       @account = Account.find(params[:id])
     end
 
+    def set_company
+      if current_admin
+        @company = Company.find(params[:company_id])
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:address, :address_secondary, :notes, :currency_id)
+      params.require(:account).permit(:address, :address_secondary, :notes, :currency_id, :company_id)
     end
 end

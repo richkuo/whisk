@@ -1,9 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Address:</strong>
-  <%= @account.address %>
+  <strong>Account</strong>
+
+  <p>id: <%= @account.id %></p>
+  <p>address: <%= @account.address %></p>
+  <p>currency_id: <%= @account.currency_id %></p>
+  <p>notes: <%= @account.notes %></p>
+  <p>confirmed_at: <%= @account.confirmed_at %></p>
+  <p>confirmation_sent_at: <%= @account.confirmation_sent_at %></p>
+  <p>accountable_type: <%= @account.accountable_type %></p>
+  <p>accountable_id: <%= @account.accountable_id %></p>
+  <p>created_at: <%= @account.created_at %></p>
+  <p>updated_at: <%= @account.updated_at %></p>
+  loop through total transactions
 </p>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Back', :back %>

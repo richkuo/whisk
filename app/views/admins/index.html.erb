@@ -13,6 +13,10 @@
             <h3><%= company.name %></h3>
 
             <p class="text-muted">
+              Number of employees: <%= company.users.count %>
+              <br>
+              Number of accounts: <%= company.accounts.count %>
+              <br>
               Additional company notes/updates/etc
             </p>
           </div>
