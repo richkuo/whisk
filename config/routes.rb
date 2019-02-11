@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       root 'users#index'
 
       resources :users do
-        resources :accounts
+        resources :accounts do
+          # resources :transactions
+        end
       end
     end
 
@@ -25,11 +27,16 @@ Rails.application.routes.draw do
 
       # TODO: move companies under admins
       resources :companies do
-        resources :accounts
+        resources :payrolls
+        resources :accounts do
+          # resources :transactions
+        end
       end
 
       resources :users do
-        resources :accounts
+        resources :accounts do
+          # resources :transactions
+        end
       end
     end
 

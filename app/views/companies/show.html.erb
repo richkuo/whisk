@@ -84,6 +84,9 @@
 
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
+              <%= link_to "Run Payroll", new_company_payroll_path(company_id: params[:id]), class: "btn btn-sm btn-outline-secondary", target: '_blank' %>
+            </div>
+            <div class="btn-group mr-2">
               <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
               <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
@@ -98,8 +101,27 @@
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
+              <th>Id</th>
+              <th>Batch number</th>
+              <th>Admin</th>
+              <th>Company</th>
+              <th>Pay period</th>
+              <th>Created at</th>
+              <th></th>
             </thead>
+
             <tbody>
+              <% @payrolls.each do |payroll| %>
+                <tr>
+                  <td><%= payroll.id %></td>
+                  <td><%= payroll.batch_number %></td>
+                  <td><%= payroll.admin.email %></td>
+                  <td><%= payroll.company.name %></td>
+                  <td><%= payroll.pay_period %></td>
+                  <td><%= payroll.created_at %></td>
+                  <td><a href=<%= company_payroll_path(@company, payroll) %> target=_blank>more</a></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>

@@ -15,6 +15,7 @@ class CompaniesController < ApplicationController
   def show
     @users = @company.users
     @accounts = @company.accounts
+    @payrolls = @company.payrolls
   end
 
   # GET /companies/new
