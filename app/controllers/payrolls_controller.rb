@@ -11,12 +11,15 @@ class PayrollsController < ApplicationController
   # GET /payrolls/1.json
   def show
     @company = Company.find(params[:company_id])
+    @transactions = @payroll.transactions
   end
 
   # GET /payrolls/new
   def new
     @company = Company.find(params[:company_id])
     @payroll = @company.payrolls.new
+    @users = @company.users
+    @transactions = @payroll.transactions.new(company_id: @company.id)
   end
 
   # GET /payrolls/1/edit
@@ -27,14 +30,31 @@ class PayrollsController < ApplicationController
   # POST /payrolls.json
   def create
     @company = Company.find(params[:company_id])
-    @payroll = @company.payrolls.new(payroll_params)
+    transaction_params = {transactions_attributes: {}}
 
+    payroll_params.to_h['transactions_attributes'].each do |transaction|
+      if transaction[1].delete(:user).to_s == '1'
+        transaction_params[:transactions_attributes][transaction[0]] = transaction[1]
+      end
+    end
+
+    new_payroll_params = {
+      admin_id: payroll_params[:admin_id],
+      company_id: payroll_params[:company_id],
+      notes: payroll_params[:notes],
+      batch_number: payroll_params[:batch_number],
+      pay_period: payroll_params[:pay_period],
+      transactions_attributes: transaction_params[:transactions_attributes]
+    }
+
+    @payroll = @company.payrolls.new(new_payroll_params)
     respond_to do |format|
       if @payroll.save
         format.html { redirect_to @company, notice: 'Payroll was successfully created.' }
         format.json { render :show, status: :created, location: @payroll }
       else
-        format.html { render :new }
+        @users = @company.users
+        format.html { render :new, @users }
         format.json { render json: @payroll.errors, status: :unprocessable_entity }
       end
     end
@@ -72,6 +92,18 @@ class PayrollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payroll_params
-      params.require(:payroll).permit(:admin_id, :company_id, :notes, :batch_number, :pay_period)
+      params.require(:payroll).permit(:admin_id, :company_id, :notes, :batch_number, :pay_period,
+        transactions_attributes: [
+          :company_id,
+          :company_name,
+          :from_address,
+          :user_id,
+          :user_email,
+          :to_address,
+          :user,
+          :amount,
+          :currency_id,
+          :notes
+        ])
     end
 end

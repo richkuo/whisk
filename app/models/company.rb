@@ -10,4 +10,8 @@ class Company < ApplicationRecord
   # TODO change has_many users to has_many :employees, through: :employments, source: :user
 
   has_many :payrolls
+
+  def account
+    accounts.last
+  end
 end

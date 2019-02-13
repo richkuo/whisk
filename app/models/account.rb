@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
   belongs_to :accountable, polymorphic: true
+  has_many :transactions
 
   # t.string   :address
   # t.string   :address_secondary

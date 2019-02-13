@@ -11,32 +11,64 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :admin_id %>
-    <%= form.number_field :admin_id, value: current_admin.id %>
+  <div class="row">
+    <div class=col-md-4>
+      <div class="field">
+        <%= form.label :admin_id %>
+        <%= form.number_field :admin_id, value: current_admin.id %>
+      </div>
+
+      <div class="field">
+        <%= form.label :company_id %>
+        <%= form.number_field :company_id %>
+      </div>
+
+      <div class="field">
+        <%= form.label :notes %>
+        <%= form.text_area :notes %>
+      </div>
+
+      <div class="field">
+        <%= form.label :batch_number %>
+        <%= form.text_field :batch_number %>
+      </div>
+
+      <div class="field">
+        <%= form.label :pay_period %>
+        <%= form.text_field :pay_period %>
+      </div>
+    </div>
+
+    <div class=col-md-8>
+      <p>Users in this payroll</p>
+
+      <% @users.each do |user| %>
+        <%= form.fields_for :transactions do |transaction_form| %>
+          <%= transaction_form.check_box :user %>
+          <%= transaction_form.label user.name %>
+          <%= transaction_form.hidden_field :user_id, value: user.id %>
+          <%= transaction_form.text_field :user_email, value: user.email %>
+          <br>
+          <br>
+          <%= transaction_form.label :to_address %>
+          <%= transaction_form.text_field :to_address, value: 'hard coded for now' %>
+          <br>
+          <%= transaction_form.label :amount %>
+          <%= transaction_form.text_field :amount %>
+          <br>
+          <%= transaction_form.label :currency_id %>
+          <%= transaction_form.number_field :currency_id %>
+
+          <%= transaction_form.hidden_field :company_id, value: @company.id %>
+          <%= transaction_form.hidden_field :company_name, value: @company.name %>
+          <%= transaction_form.hidden_field :from_address, value: @company.account.address %>
+          <hr>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :company_id %>
-    <%= form.number_field :company_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :batch_number %>
-    <%= form.text_field :batch_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pay_period %>
-    <%= form.text_field :pay_period %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
 <% end %>

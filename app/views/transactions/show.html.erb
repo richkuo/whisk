@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @transaction.company_id %>
+</p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @transaction.company_name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @transaction.user_id %>
+</p>
+
+<p>
+  <strong>User email:</strong>
+  <%= @transaction.user_email %>
+</p>
+
+<p>
+  <strong>Payroll:</strong>
+  <%= @transaction.payroll_id %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @transaction.from_id %>
+</p>
+
+<p>
+  <strong>From address:</strong>
+  <%= @transaction.from_address %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @transaction.currency_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @transaction.amount %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @transaction.notes %>
+</p>
+
+<p>
+  <strong>Settled at:</strong>
+  <%= @transaction.settled_at %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>

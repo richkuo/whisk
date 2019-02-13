@@ -1,0 +1,72 @@
+<%= form_with(model: transaction, local: true) do |form| %>
+  <% if transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+      <% transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.number_field :company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_email %>
+    <%= form.text_field :user_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payroll_id %>
+    <%= form.number_field :payroll_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :from_id %>
+    <%= form.number_field :from_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :from_address %>
+    <%= form.text_field :from_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :currency_id %>
+    <%= form.number_field :currency_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_field :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :settled_at %>
+    <%= form.datetime_select :settled_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

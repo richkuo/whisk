@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  company_name: MyString
+  user_id: 1
+  user_email: MyString
+  payroll_id: 1
+  from_id: 1
+  from_address: MyString
+  currency_id: 1
+  amount: MyString
+  notes: MyString
+  settled_at: 2019-02-11 14:53:45
+
+two:
+  company_id: 1
+  company_name: MyString
+  user_id: 1
+  user_email: MyString
+  payroll_id: 1
+  from_id: 1
+  from_address: MyString
+  currency_id: 1
+  amount: MyString
+  notes: MyString
+  settled_at: 2019-02-11 14:53:45

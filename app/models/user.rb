@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :employments
   has_many :companies, through: :employments
+  has_many :transactions
 
   def active_accounts
     # each account has multiple
@@ -16,5 +17,9 @@ class User < ApplicationRecord
 
   def account
     accounts.last
+  end
+
+  def name
+    first_name + ' ' + last_name
   end
 end

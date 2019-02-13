@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Id:</strong>
+  <%= @payroll.id %>
+</p>
+
+<p>
   <strong>Admin:</strong>
   <%= @payroll.admin_id %>
 </p>
@@ -23,4 +28,11 @@
 <p>
   <strong>Pay period:</strong>
   <%= @payroll.pay_period %>
+</p>
+
+<p>
+  <strong>List of transactions:</strong>
+  <% @transactions.each do |transaction| %>
+    <p><%= transaction.inspect %></p>
+  <% end %>
 </p>

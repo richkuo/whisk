@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
       resources :users do
         resources :accounts do
-          # resources :transactions
+          resources :transactions
         end
       end
     end
@@ -29,13 +29,13 @@ Rails.application.routes.draw do
       resources :companies do
         resources :payrolls
         resources :accounts do
-          # resources :transactions
+          resources :transactions
         end
       end
 
       resources :users do
         resources :accounts do
-          # resources :transactions
+          resources :transactions
         end
       end
     end
