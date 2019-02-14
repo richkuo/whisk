@@ -3,6 +3,12 @@ class CompaniesController < ApplicationController
   # before_action :admin_signed_in?
   before_action :check_access, only: [:show, :edit, :update]
 
+  def invite
+    @company = Company.find(params[:company_id])
+    @user = User.invite!(email: params[:email], invited_by_admin_id: current_admin.id)
+    @user.companies << @company
+  end
+
   # GET /companies
   # GET /companies.json
   def index

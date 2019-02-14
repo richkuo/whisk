@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :trackable,
+  devise :invitable, :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :employments
@@ -20,6 +20,6 @@ class User < ApplicationRecord
   end
 
   def name
-    first_name + ' ' + last_name
+    first_name.to_s + ' ' + last_name.to_s
   end
 end
