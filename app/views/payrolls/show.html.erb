@@ -30,9 +30,26 @@
   <%= @payroll.pay_period %>
 </p>
 
-<p>
-  <strong>List of transactions:</strong>
-  <% @transactions.each do |transaction| %>
-    <p><%= transaction.inspect %></p>
-  <% end %>
-</p>
+<strong>List of transactions:</strong>
+
+<% @transactions.each do |transaction| %>
+  <div class="card card-body d-flex align-items-start shadow-sm mb-3">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        transaction hash:
+        <strong><%= transaction.result_hash %></strong>
+      </div>
+
+      <div class="col-md-3">
+        <p>name: <%= transaction.user.name %></p>
+        <p>user_email: <%= transaction.user_email %></p>
+        <p>amount: <%= transaction.amount %></p>
+      </div>
+
+      <div class="col-md-9">
+        <p>from address:<br><%= transaction.actual_from_address %></p>
+        <p>to address:<br><%= transaction.to_address %></p>
+      </div>
+    </div>
+  </div>
+<% end %>

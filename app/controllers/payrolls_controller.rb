@@ -50,6 +50,8 @@ class PayrollsController < ApplicationController
     @payroll = @company.payrolls.new(new_payroll_params)
     respond_to do |format|
       if @payroll.save
+        @transactions = @payroll.transactions
+        format.js # actually means: if the client ask for js -> return file.js
         format.html { redirect_to @company, notice: 'Payroll was successfully created.' }
         format.json { render :show, status: :created, location: @payroll }
       else
@@ -103,7 +105,8 @@ class PayrollsController < ApplicationController
           :user,
           :amount,
           :currency_id,
-          :notes
+          :notes,
+          :result_hash
         ])
     end
 end

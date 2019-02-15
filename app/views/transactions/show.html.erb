@@ -26,11 +26,6 @@
 </p>
 
 <p>
-  <strong>From:</strong>
-  <%= @transaction.from_id %>
-</p>
-
-<p>
   <strong>From address:</strong>
   <%= @transaction.from_address %>
 </p>
@@ -46,6 +41,11 @@
 </p>
 
 <p>
+  <strong>Result Hash:</strong>
+  <%= @transaction.result_hash %>
+</p>
+
+<p>
   <strong>Notes:</strong>
   <%= @transaction.notes %>
 </p>
@@ -54,6 +54,3 @@
   <strong>Settled at:</strong>
   <%= @transaction.settled_at %>
 </p>
-
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>

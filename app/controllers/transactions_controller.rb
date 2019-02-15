@@ -42,8 +42,10 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
+        format.js
         format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transaction }
+        # format.json { render :show, status: :ok, location: @transaction }
+        format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
@@ -69,6 +71,20 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:company_id, :company_name, :user_id, :user_email, :payroll_id, :from_id, :from_address, :currency_id, :amount, :notes, :settled_at)
+      params.require(:transaction).permit(
+        :actual_from_address,
+        :result_hash,
+        :company_id,
+        :company_name,
+        :user_id,
+        :user_email,
+        :payroll_id,
+        :from_id,
+        :from_address,
+        :currency_id,
+        :amount,
+        :notes,
+        :settled_at
+      )
     end
 end

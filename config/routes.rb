@@ -28,7 +28,10 @@ Rails.application.routes.draw do
       # TODO: move companies under admins
       resources :companies do
         post '/invite', to: 'companies#invite'
-        resources :payrolls
+        resources :payrolls do
+          resources :transactions
+        end
+
         resources :accounts do
           resources :transactions
         end
