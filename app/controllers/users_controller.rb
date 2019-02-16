@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def index
     @user = current_user
     @accounts = @user.accounts
-    # @users = User.all
+    @payrolls = current_user.payrolls
+    @companies = current_user.companies
   end
 
   # GET /users/1
