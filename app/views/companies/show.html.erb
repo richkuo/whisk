@@ -86,8 +86,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <th>Created</th>
-                <th>Last Updated</th>
+                <!-- <th>Last Updated (mm-dd-yyyy)</th> -->
                 <th>Confirmed</th>
                 <th></th>
               </tr>
@@ -100,9 +99,8 @@
                     <td><%= user.first_name %></td>
                     <td><%= user.last_name %></td>
                     <td><%= user.email %></td>
-                    <td><%= user.created_at %></td>
-                    <td><%= user.updated_at %></td>
-                    <td><%= user.confirmed? %></td>
+                    <!-- <td><% user.updated_at.strftime('%m-%d-%Y') %></td> -->
+                    <td><%= user.confirmed? ? 'Yes' : 'No' %></td>
                     <td><a href=<%= user_path %> target=_blank>more</a></td>
                   </tr>
               <% end %>
@@ -136,10 +134,9 @@
             <thead>
               <th>Id</th>
               <th>Batch #</th>
-              <th>Admin</th>
               <th>Pay period</th>
-              <th>Created at</th>
-              <th># Transactions</th>
+              <th>Date Ran (mm-dd-yyyy)</th>
+              <th># of Transactions</th>
               <th></th>
             </thead>
 
@@ -148,9 +145,8 @@
                 <tr>
                   <td><%= payroll.id %></td>
                   <td><%= payroll.batch_number %></td>
-                  <td><%= payroll.admin.email %></td>
                   <td><%= payroll.pay_period %></td>
-                  <td><%= payroll.created_at %></td>
+                  <td><%= payroll.created_at.strftime('%m-%d-%Y') %></td>
                   <td><%= payroll.transactions.count %></td>
                   <td><a href=<%= company_payroll_path(@company, payroll) %> target=_blank>more</a></td>
                 </tr>
@@ -180,7 +176,6 @@
               </div>
 
               <div class="col-md-6">
-                last 3 transactions go here
               </div>
             </div>
           </a>

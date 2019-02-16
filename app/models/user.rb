@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :employments
   has_many :companies, through: :employments
   has_many :transactions
+  has_many :payrolls, through: :transactions
 
   def active_accounts
     # each account has multiple

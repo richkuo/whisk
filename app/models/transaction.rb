@@ -2,6 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :company
   belongs_to :user
   belongs_to :payroll, inverse_of: :transactions
+  belongs_to :account
   # has_one :currency
 
   # t.integer :company_id, null: false

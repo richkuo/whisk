@@ -4,7 +4,7 @@
 
 <p><%= link_to 'Add Company', new_company_path %></p>
 
-<div class="row">
+<!-- <div class="row"> -->
   <div class="col-md-6">
     <% @companies.each do |company| %>
       <a href="<%= company_url(company) %>" class="card mb-5 shadow-sm" style="text-decoration: none">
@@ -16,29 +16,29 @@
               Number of employees: <%= company.users.count %>
               <br>
               Number of accounts: <%= company.accounts.count %>
-              <br>
-              Additional company notes/updates/etc
+              <!-- <br> -->
+              <!-- Additional company notes/updates/etc -->
             </p>
           </div>
 
           <div class="col-md-3 text-muted">
-            Alerts?
+            <!-- Alerts?
             <br>
             Stats?
             <br>
             Actions?
-            <br>
+            <br> -->
           </div>
         </div>
       </a>
     <% end %>
   </div>
 
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
     <div class="card shadow-sm">
       <div class="card-body d-flex flex-column align-items-start">
         quick view content can be shown here on mouse over or click
       </div>
     </div>
-  </div>
-</div>
+  </div> -->
+<!-- </div> -->

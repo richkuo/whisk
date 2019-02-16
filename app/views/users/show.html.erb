@@ -2,30 +2,34 @@
 
 <div class="row">
   <div class="col-md-4">
-    <p>id: <%= @user.id %></p>
-    <p>first_name: <%= @user.first_name %></p>
-    <p>last_name: <%= @user.last_name %></p>
-    <p>email: <%= @user.email %></p>
-    <p>created_at: <%= @user.created_at %></p>
-    <p>confirmed: <%= @user.confirmed? %></p>
+    <p>Id: <%= @user.id %></p>
+    <p>First Name: <%= @user.first_name %></p>
+    <p>Last Name: <%= @user.last_name %></p>
+    <p>Email: <%= @user.email %></p>
+    <p>Created At: <%= @user.created_at %></p>
+    <p>Confirmed: <%= @user.confirmed? ? 'Yes' : 'No' %></p>
 
-    <p>
+    <!-- <p>
       active addresses (account)
       <br>
       make a payment to current address
     </p>
-
-    <br>
-
-    <p>link_to previous accounts</p>
-
-    <br>
-
-    <%= link_to 'Edit', edit_user_path(@user) %>
+    <p>link_to previous accounts</p> -->
   </div>
 
   <div class="col-md-8">
-    <p>payments received table</p>
+    <p>Transactions</p>
+
+    <% @transactions.each do |transaction| %>
+      <div class="card card-body d-flex align-items-start shadow-sm mb-3">
+        <div class="col-md-12">
+          <p>transaction hash: <strong><%= transaction.result_hash %></strong></p>
+          <p>from address: <%= transaction.actual_from_address %></p>
+          <p>to address: <%= transaction.to_address %></p>
+          <p>amount: <%= transaction.amount %></p>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
