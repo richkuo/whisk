@@ -22,9 +22,9 @@
   </div>
 
   <div class="field">
-    <%= form.label :currency_id %>
-    <%= form.number_field :currency_id %>
-    (this needs to be a select field where the values are different types of currencies)
+    <% form.label :currency_id %>
+    <%= form.hidden_field :currency_id, value: 1 %>
+    <!-- (this needs to be a select field where the values are different types of currencies) -->
   </div>
 
   <div class="actions">

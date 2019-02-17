@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to :root, notice: 'Account was successfully created.' }
+        format.html { redirect_to current_user.present? ? :root : @company, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -87,6 +87,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:address, :address_secondary, :notes, :currency_id, :company_id)
+      params.require(:account).permit(:address, :address_secondary, :notes, :currency_id, :company_id, :accountable_id)
     end
 end

@@ -17,6 +17,11 @@ class PayrollsController < ApplicationController
   # GET /payrolls/new
   def new
     @company = Company.find(params[:company_id])
+
+    if @company.accounts.empty?
+      redirect_to new_company_account_path(@company)
+    end
+
     @payroll = @company.payrolls.new
     @users = @company.users
     @transactions = @payroll.transactions.new(company_id: @company.id)

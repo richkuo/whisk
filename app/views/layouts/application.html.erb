@@ -49,7 +49,7 @@
           <% if current_user.present? || current_admin.present? %>
             <li class="nav-item">
               <!-- <a class="nav-link" href="/users/sign_out/">Logout</a> -->
-              <%= link_to 'Logout', destroy_user_session_url(current_user), method: :delete, class: 'nav-link' %>
+              <%= link_to 'Logout', destroy_user_session_url, method: :delete, class: 'nav-link' %>
             </li>
           <% end %>
         </ul>

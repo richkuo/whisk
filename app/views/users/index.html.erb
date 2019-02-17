@@ -72,7 +72,9 @@
 
       <div class="tab-pane fade" id="v-pills-addresses" role="tabpanel" aria-labelledby="v-pills-addresses-tab">
         <h2>Your Addresses</h2>
+
         <p><%= link_to 'Create new account', new_user_account_path(current_user) %></p>
+
         <% @accounts.each do |account| %>
           <a href="<%= user_account_url(current_user, account) %>" class="card mb-5 shadow-sm" style="text-decoration: none">
             <div class="card-body d-flex align-items-start">

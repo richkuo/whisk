@@ -7,6 +7,10 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:company_id])
     @user = User.invite!(email: params[:email], invited_by_admin_id: current_admin.id)
     @user.companies << @company
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /companies

@@ -1,0 +1,10 @@
+async function closeModalAndReload() {
+  try {
+    $('#inviteModal').modal('hide');
+    location.reload();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+closeModalAndReload();

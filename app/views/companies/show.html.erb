@@ -31,17 +31,17 @@
 
           <div class="btn-toolbar">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-sm btn-outline-secondary mr-2" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-sm btn-outline-secondary mr-2" data-toggle="modal" data-target="#inviteModal">
               Invite Employee
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <%= form_with(url: company_invite_url(@company), local: true) do |form| %>
+                <%= form_with(url: company_invite_url(@company)) do |form| %>
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Invite email</h5>
+                      <h5 class="modal-title" id="inviteModalLabel">Invite email</h5>
 
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -55,7 +55,7 @@
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                      <%= form.submit class: 'btn btn-sm btn-primary' %>
+                      <%= form.submit 'Invite', class: 'btn btn-sm btn-primary' %>
                     </div>
                   </div>
                 <% end %>
